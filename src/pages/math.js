@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 
 import Layout from '../components/layout'
+import mathStyle from './math.module.scss'
 
 const Math = () => {
     const data = useStaticQuery(graphql`
@@ -25,10 +26,10 @@ const Math = () => {
     return (
         <Layout>
             <h1>Blog</h1>
-            <ol>
+            <ol className={mathStyle.posts}>
                 {data.allMarkdownRemark.edges.map((edge) => {
                     return (
-                        <li>
+                        <li className={mathStyle.post}>
                             <Link to={`/math/${edge.node.fields.slug}`} >
                                 <h2>{edge.node.frontmatter.title}</h2>
                                 <p>{edge.node.frontmatter.date}</p>
