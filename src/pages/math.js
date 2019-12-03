@@ -3,8 +3,8 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 
 import Layout from '../components/layout'
 
-const math = () => {
-  const data = useStaticQuery(graphql`
+const Math = () => {
+    const data = useStaticQuery(graphql`
         query {
             allMarkdownRemark {
                 edges {
@@ -19,21 +19,21 @@ const math = () => {
         }
     `)
 
-  return (
-    <Layout>
-      <h1>Blog</h1>
-      <ol>
-        {data.allMarkdownRemark.edges.map((edge) => {
-          return (
-            <li>
-              <h2>{edge.node.frontmatter.title}</h2>
-              <p>{edge.node.frontmatter.date}</p>
-            </li>
-          )
-        })}
-      </ol>
-    </Layout>
-  )
+    return (
+        <Layout>
+            <h1>Blog</h1>
+            <ol>
+                {data.allMarkdownRemark.edges.map((edge) => {
+                    return (
+                        <li>
+                                <h2>{edge.node.frontmatter.title}</h2>
+                                <p>{edge.node.frontmatter.date}</p>
+                        </li>
+                    )
+                })}
+            </ol>
+        </Layout>
+    )
 }
 
-export default math
+export default Math
