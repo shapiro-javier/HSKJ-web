@@ -6,33 +6,35 @@ import mathStyle from './math.module.scss'
 
 const Math = () => {
     const data = useStaticQuery(graphql`
-        query {
-            allMarkdownRemark {
-                edges {
-                    node {
-                        frontmatter {
-                            title
-                            date
-                        }
-                        fields{
-                            slug
-                        }
-                    }
+        query{
+            allContentfulBLogPost(
+              sort: {
+                fields: publishedDate,
+                order:DESC
+              }
+            )
+            {
+              edges{
+                node{
+                  title
+                  slug
+                  publishedDate(formatString:"MMM Do, YYYY")
                 }
+              }
             }
-        }
+          }
     `)
 
     return (
         <Layout>
             <h1>Blog</h1>
             <ol className={mathStyle.posts}>
-                {data.allMarkdownRemark.edges.map((edge) => {
+                {data.allContentfulBLogPost.edges.map((edge) => {
                     return (
                         <li className={mathStyle.post}>
-                            <Link to={`/math/${edge.node.fields.slug}`} >
-                                <h2>{edge.node.frontmatter.title}</h2>
-                                <p>{edge.node.frontmatter.date}</p>
+                            <Link to={`/math/${edge.node.slug}`} >
+                                <h2>{edge.node.title}</h2>
+                                <p>{edge.node.publishedDate}</p>
                             </Link>
                         </li>
                     )
