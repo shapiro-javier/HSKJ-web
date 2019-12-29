@@ -4,16 +4,12 @@ import { JGET } from "../utils/API"
 
 class AboutPage extends React.Component {
   state={
-    res:null
+    res:[]
   }
   async componentDidMount(){
    const response = await JGET('account/stats')
-   if(response.ok){
    response.json()
-   .then(res=>this.setState({res})) 
-   }
-
-    
+   .then(res=>this.setState({res}),()=>console.log(this.state.res)) 
   }
   render() {
     return (
