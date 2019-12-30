@@ -3,14 +3,25 @@ import Layout from '../components/layout'
 import { JGET } from '../utils/API'
 import Loading from './loading'
 import { Link } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 import categoriesStyles from "./categories.module.scss"
 
 export default function Categories() {
+    const key = useStaticQuery(graphql`
+    query {
+        site {
+            siteMetadata {
+                GO_KEY
+            }
+        }
+    }
+`)
+
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
-        JGET('folder/list')
+        fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}`)
             .then(response => response.json())
             .then(res => {
                 setRes(res.result.folders)
