@@ -10,7 +10,7 @@ export default function Categories() {
     const [data, setRes] = useState(0)
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
-        fetch('https://gounlimited.to/api/folder/list?key=22910njvad2in1ldq2vr4')
+        fetch(`https://gounlimited.to/api/folder/list?key=${process.env.GO_KEY}`)
             .then(response => response.json())
             .then(res => {
                 console.log(res)
