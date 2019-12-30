@@ -4,7 +4,7 @@ import Loading from '../loading';
 import { JGET } from '../../utils/API';
 import categoriesStyles from "./categories.module.scss"
 import { Link } from 'gatsby';
-export default function Amateur({ location }) {
+export default function SisLovesMe({ location }) {
     console.log(location.state)
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
