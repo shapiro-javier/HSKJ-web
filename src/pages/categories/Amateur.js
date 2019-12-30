@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../components/layout'
-import { JGET } from '../utils/API'
-import Loading from './loading'
-import { Link } from 'gatsby'
-
-import categoriesStyles from "./categories.module.scss"
-
-export default function Categories() {
+import Layout from '../../components/layout'
+import Loading from '../loading';
+import { JGET } from '../../utils/API';
+import categoriesStyles from "../categories.module.scss"
+import { Link } from 'gatsby';
+export default function Amateur({ location }) {
+    console.log(location.state)
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
-        JGET('folder/list')
+        JGET('folder/list', `fld_id=${location.state.ID}`)
             .then(response => response.json())
             .then(res => {
-                setRes(res.result.folders)
-                console.log(res)
+                setRes(res.result.files)
+                console.log(res.result.files)
                 setLoading(false);
             }
             )
@@ -25,14 +24,12 @@ export default function Categories() {
     return (
         <Layout>
             <ol className={categoriesStyles.posts} >
-                {data.filter(e => e.fld_id != "43517").map(e => {
+                {data.map(e => {
                     return (
 
                         <li className={categoriesStyles.post}>
-                            <Link to={`/categories/${e.name}`}
-                            state={{ID:e.fld_id}}
-                            >
-                                <h2>{e.name}</h2>
+                            <Link onClick={()=>window.open(e.link)}>
+                            <h2>{e.title}</h2>
                             </Link>
                         </li>
 
