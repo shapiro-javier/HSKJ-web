@@ -7,18 +7,18 @@ import { Link } from 'gatsby'
 import categoriesStyles from "./categories.module.scss"
 
 export default function Categories() {
-    const [data, setRes] = useState([])
+    const [data, setRes] = useState(0)
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
         JGET('folder/list')
             .then(response => response.json())
             .then(res => {
-                setRes(res.result.folders)
                 console.log(res)
+                setRes(res.result.folders)
                 setLoading(false);
             }
             )
-    })
+    },[])
     if (loading === true) {
         return <Layout><Loading /></Layout>;
     }
