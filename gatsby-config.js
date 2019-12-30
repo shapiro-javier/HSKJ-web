@@ -7,6 +7,7 @@ module.exports = {
     title: `NAME TBD XXX`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@Jeralt`,
+    GO_KEY:process.env.GO_KEY
   },
   plugins: [
     {
