@@ -10,7 +10,7 @@ export default function Categories() {
     const [data, setRes] = useState(0)
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
-        JGET('folder/list')
+        fetch('https://gounlimited.to/api/folder/list?key=22910njvad2in1ldq2vr4')
             .then(response => response.json())
             .then(res => {
                 console.log(res)
