@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../components/layout'
-import { JGET } from '../utils/API'
-import Loading from './loading'
-import { Link } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
 
-import categoriesStyles from "./categories.module.scss"
+import Layout from './layout'
+import categoriesStyles from "./selectedcategories.module.scss"
+import Loading from '../pages/loading'
 
-export default function Categories() {
+export default function SelectedCategory( props ) {
     const key = useStaticQuery(graphql`
     query {
         site {
@@ -17,15 +15,14 @@ export default function Categories() {
         }
     }
 `)
-
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
     useEffect(() => {
-        fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}`)
+        fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}&fld_id=${props.ID}`)
             .then(response => response.json())
             .then(res => {
-                setRes(res.result.folders)
-                console.log(res)
+                setRes(res.result.files)
+                console.log(res.result.files)
                 setLoading(false);
             }
             )
@@ -36,15 +33,14 @@ export default function Categories() {
     return (
         <Layout>
             <ol className={categoriesStyles.posts} >
-                {data.filter(e => e.fld_id != "43517").map(e => {
+            <h2 className={categoriesStyles.h2}>{props.name}</h2>
+                {data.map(e => {
                     return (
 
                         <li className={categoriesStyles.post}>
-                            <Link to={`/categories/${e.name}`}
-                            state={{ID:e.fld_id,name:e.name}}
-                            >
-                                <h2>{e.name}</h2>
-                            </Link>
+                            <div onClick={()=>window.open(e.link)}>
+                            <h2>{e.title}</h2>
+                            </div>
                         </li>
 
                     )
