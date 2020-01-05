@@ -30,8 +30,8 @@ export default function Tushy({ location }) {
     }
     useEffect(() => {
         setLoading(true);
-        fetchData(location.state.ID)
-    }, [location.state.ID])
+        fetchData(key.site.siteMetadata.GO_KEY)
+    }, [key.site.siteMetadata.GO_KEY])
 
     if (loading === true) {
         return <Layout><Loading /></Layout>;
