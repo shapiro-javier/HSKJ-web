@@ -20,16 +20,21 @@ export default function Categories() {
 
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
+    const fetchData = async () => {
+        const response = await fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}`)
+        if (response.ok) {
+            response.json()
+                .then(res => {
+                    setRes(res.result.folders)
+                    setLoading(false);
+                }
+                )
+        }
+    }
     useEffect(() => {
-        fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}`)
-            .then(response => response.json())
-            .then(res => {
-                setRes(res.result.folders)
-                console.log(res)
-                setLoading(false);
-            }
-            )
-    })
+        fetchData(key.site.siteMetadata.GO_KEY)
+    }, [key.site.siteMetadata.GO_KEY])
+
     if (loading === true) {
         return <Layout><Loading /></Layout>;
     }
@@ -39,9 +44,9 @@ export default function Categories() {
                 {data.filter(e => e.fld_id != "43517").map(e => {
                     return (
 
-                        <li className={categoriesStyles.post}>
+                        <li key={e.fld_id} className={categoriesStyles.post}>
                             <Link to={`/categories/${e.name}`}
-                            state={{ID:e.fld_id,name:e.name}}
+                                state={{ ID: e.fld_id, name: e.name }}
                             >
                                 <h2>{e.name}</h2>
                             </Link>

@@ -15,19 +15,24 @@ export default function BUS({ location }) {
         }
     }
 `)
-    console.log(location.state)
     const [data, setRes] = useState([])
     const [loading, setLoading] = React.useState(true);
+    const fetchData = async () => {
+        const response = await fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}&fld_id=${location.state.ID}`)
+        if (response.ok) {
+            response.json()
+                .then(res => {
+                    setRes(res.result.files)
+                    setLoading(false);
+                }
+                )
+        }
+    }
     useEffect(() => {
-        fetch(`https://gounlimited.to/api/folder/list?key=${key.site.siteMetadata.GO_KEY}&fld_id=${location.state.ID}`)
-            .then(response => response.json())
-            .then(res => {
-                setRes(res.result.files)
-                console.log(res.result.files)
-                setLoading(false);
-            }
-            )
-    })
+        setLoading(true);
+        fetchData(location.state.ID)
+    }, [location.state.ID])
+
     if (loading === true) {
         return <Layout><Loading /></Layout>;
     }
@@ -38,7 +43,7 @@ export default function BUS({ location }) {
                 {data.map(e => {
                     return (
 
-                        <li className={categoriesStyles.post}>
+                        <li key={e.link} className={categoriesStyles.post}>
                             <div onClick={() => window.open(e.link)}
                             >
                                 <h2>{e.title}</h2>
@@ -46,9 +51,10 @@ export default function BUS({ location }) {
                                     align="center"
                                 >
                                     <iframe
-                                        SRC={e.link.slice(0, 22) + '/embed-' + e.link.slice(23)}
+                                        title={e.title}
+                                        src={e.link.slice(0, 22) + '/embed-' + e.link.slice(23)}
                                         style={{ width: '1px', minWidth: '100%' }}
-                                        FRAMEBORDER='0 '
+                                        frameBorder='0 '
                                         allowFullScreen
                                     />
                                 </div>
