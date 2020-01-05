@@ -1,12 +1,13 @@
 .header {
     padding: 1rem 0 3rem;
-    text-align: center
+    text-align: left
 }
 
 .title {
-    color: #000000;
+    color: #ff9900;
     font-size: 2rem;
     text-decoration: none;
+    text-align: left
 }
 
 .nav-list {
@@ -14,12 +15,25 @@
     list-style-type: none;
     margin: 0;
     justify-content: space-around;
+    
+    button {
+        padding: 0 6px 0 6px;
+        margin: 6px 8px 6px 8px;
+        min-width: 88px;
+        border-radius: 3px;
+        font-size: 14px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration:none;
+        border: none;
+        outline: none;
+        background-color: #000;
+      }
 }
 
 .nav-item {
-    color: #999999;
+    color: #666666;
     font-size: 1rem;
-    margin-right: 1.3rem;
     text-decoration: none;
 }
 
@@ -28,5 +42,5 @@
 }
 
 .active-nav-item {
-    color: #333333;
+    color: #ff9900;
 }

@@ -1,10 +1,11 @@
 .container {
     margin: 0 0 0 0;
-    max-width: 95%;
-    padding: 0 0 0 2rem ;
+    max-width: 100%;
+    padding: 1.5rem ;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #1f2023;
 }
 
 .content {
