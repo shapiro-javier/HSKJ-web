@@ -5,7 +5,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `HKSJ`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `HKSJ Bois`,
     author: `@Jeralt`,
     GO_KEY:process.env.GO_KEY
   },
@@ -46,11 +46,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `HKSJ`,
+        short_name: `HKSJ`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#666666`,
+        theme_color: `#666666`,
         display: `minimal-ui`
       },
     },
