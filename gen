@@ -1,0 +1,14 @@
+cd src/pages/categories
+ ls > a
+sed -i "s/Amateur.js//g" a
+sed -i '1d' a
+for i in $(cat a ); do 
+cat Amateur.js > "$i"
+done
+for i in $(cat a ); do
+name=$(echo "$i" | sed 's|\-||g' | sed 's|\.js||g')
+sed -i "s/Amateur/$name/g" $i
+done
+rm a
+sed -i "s/fidelity/Fidelity/g" fidelity.js
+cd -
