@@ -1,13 +1,12 @@
-import React from "react";
-import "./loading.css";
+import React from "react"
+import { Loader, Segment } from "semantic-ui-react"
 
 export default function Loading() {
   return (
-    <h1 className="text">
-      Loading{" "}
-      <span role="img" aria-label="Spinning emoji" className="spin">
-        🌀
-      </span>
-    </h1>
-  );
+    <span>
+      <Segment>
+        <Loader active inline="centered" size="huge" />
+      </Segment>
+    </span>
+  )
 }
