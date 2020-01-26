@@ -25,9 +25,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
+    "develop": "echo y | gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,scss}\"",
+    "start": "echo y | npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "gen_pages": "bash gen",
