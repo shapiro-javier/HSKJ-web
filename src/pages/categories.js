@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import Loading from "./loading"
+import Loading from "../components/loading"
 import { Link } from "gatsby"
 import { graphql, useStaticQuery } from "gatsby"
 import { Card } from "semantic-ui-react"

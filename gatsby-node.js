@@ -10,10 +10,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        "../../theme.config$": path.join(
-          __dirname,
-          "src/semantic/theme.config"
-        ),
+        "../../theme.config$": path.join(__dirname, "src/theming/theme.config"),
       },
     },
   })
@@ -21,7 +18,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const blogTemplate = path.resolve("./src/templates/blog.js")
+  const blogTemplate = path.resolve("./src/components/blog.js")
 
   const response = await graphql(`
     query {

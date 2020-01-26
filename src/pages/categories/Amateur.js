@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 
 import Layout from "../../components/layout"
-import Loading from "../loading"
+import Loading from "../../components/loading"
 import { Card } from "semantic-ui-react"
 import SEO from "../../components/seo"
 
