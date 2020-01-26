@@ -3,7 +3,7 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 
 import Layout from "../../components/layout"
 import Loading from "../../components/loading"
-import { Card } from "semantic-ui-react"
+import { Card, Divider } from "semantic-ui-react"
 import SEO from "../../components/seo"
 
 export default function Tushy({ location }) {
@@ -55,26 +55,27 @@ export default function Tushy({ location }) {
           to="/categories"
         />
       </Card.Group>
+      <Divider />
       <Card.Group>
         <Card
           fluid
           inline="centered"
-          header="Click on the title of the video to open it in a new window"
-          style={{ textAlign: "center" }}
+          content="Click on the title of the video to open it in a new window"
+          style={{
+            textAlign: `center`,
+            fontSize: `14px`,
+          }}
+          extra
         />
       </Card.Group>
       <Card.Group>
         {data.map(e => {
           return (
-            <Card
-              fluid
-              inline="centered"
-              key={e.link}
-              href={e.link}
-              target="_blank"
-            >
+            <Card fluid inline="centered" key={e.link}>
               <Card.Content>
                 <Card.Header
+                  href={e.link}
+                  target="_blank"
                   style={{
                     textAlign: `center`,
                     fontSize: `20px`,
