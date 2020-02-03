@@ -1,7 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-
+import { Card, Divider } from "semantic-ui-react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -50,12 +50,35 @@ const blog = props => {
   return (
     <Layout>
       <SEO title={props.data.contentfulBLogPost.title} />
-      <h1>{props.data.contentfulBLogPost.title}</h1>
-      <p>{props.data.contentfulBLogPost.publishedDate}</p>
-      {documentToReactComponents(
-        props.data.contentfulBLogPost.body.json,
-        options
-      )}
+      <Card.Group>
+        <Card
+          fluid
+          inline="centered"
+          header="Go back"
+          style={{ textAlign: `center` }}
+          as={Link}
+          to="/about"
+        />
+      </Card.Group>
+      <Divider />
+      <Card fluid centered>
+        <Card.Content>
+          <h3>
+            <Card.Header>{props.data.contentfulBLogPost.title}</Card.Header>
+          </h3>
+          <h4>
+            <Card.Description>
+              {documentToReactComponents(
+                props.data.contentfulBLogPost.body.json,
+                options
+              )}
+            </Card.Description>
+          </h4>
+        </Card.Content>
+        <Card.Content extra>
+          <p>{props.data.contentfulBLogPost.publishedDate}</p>
+        </Card.Content>
+      </Card>
     </Layout>
   )
 }

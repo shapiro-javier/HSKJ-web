@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ -z "$siteUrl" ]; then
+    if [ -f ./.env.production ]; then
+        if [ -z "$(grep siteUrl .env.production | head -1)" ] > /dev/null 2>&1 ; then
+            echo "siteUrl='https://hksj.wtf'" >> .env.production
+        fi
+    else
+        echo "siteUrl='https://hksj.wtf'" >> .env.production
+    fi
+    if [ -f ./.env.development ]; then
+        if [ -z "$(grep siteUrl .env.development | head -1)" ] > /dev/null 2>&1 ; then
+            echo "siteUrl='https://hksj.wtf'" >> .env.development
+        fi
+    else
+        echo "siteUrl='https://hksj.wtf'" >> .env.development
+    fi
+fi
